@@ -1,0 +1,27 @@
+{
+  "limit": 10000,
+  "even_n_tested": 5000,
+  "method": "Exact Eratosthenes sieve; all minima independently checked by trial division",
+  "python": "3.12.14",
+  "csv_sha256": "6a37bf216d10850a431bcc50e3808c0d7c9983b2c0078a5f2a11665cf956368a",
+  "q_plus": {
+    "failures": [],
+    "maximum": 397,
+    "maximum_at": [
+      6046
+    ],
+    "mean": 27.8088,
+    "median": 13.0,
+    "percentile_95_nearest_rank": 97
+  },
+  "q_minus": {
+    "failures": [],
+    "maximum": 467,
+    "maximum_at": [
+      8968
+    ],
+    "mean": 22.3494,
+    "median": 11.0,
+    "percentile_95_nearest_rank": 83
+  }
+}
