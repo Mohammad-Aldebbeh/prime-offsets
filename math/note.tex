@@ -1,0 +1,423 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}[proposition]{Corollary}
+\newcommand{\Qp}{Q_{+}}
+\newcommand{\Qm}{Q_{-}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\title{Prime offsets around even squares:\\local restrictions and finite verification}
+\author{Mohammad Aldebbeh}
+\date{October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For even $n$, we ask whether each adjacent square gap contains a prime
+whose distance from $n^2$ is also prime. We prove elementary restrictions,
+count admissible offset residues for a fixed center, and compare the two
+directions through a simultaneous local count. An exact search, independently
+checked by trial division, finds bounded witnesses in both directions for every
+even $2\le n\le10\,000$. Published minimal Goldbach-partition computations
+give a larger finite range on the lower side. The universal assertions remain
+conjectural.
+\end{abstract}
+
+\section{The problem}
+Let $n\ge2$ be even. An \emph{upper witness} is a prime $q<2n+1$ for
+which $n^2+q$ is prime. A \emph{lower witness} is a prime $q<2n-1$ for
+which $n^2-q$ is prime. The directions may use different offsets.
+Define the bounded minima
+\begin{align*}
+\Qp(n)&=\min\{q:q\text{ prime},\ q<2n+1,\ n^2+q\text{ prime}\},\\
+\Qm(n)&=\min\{q:q\text{ prime},\ q<2n-1,\ n^2-q\text{ prime}\},
+\end{align*}
+with value $\infty$ when the relevant set is empty. The upper and lower
+prime-offset conjectures assert, respectively, that these minima are finite
+for every even $n\ge2$.
+
+The strict bounds give
+\[
+ n^2<n^2+q<(n+1)^2,\qquad (n-1)^2<n^2-q<n^2.
+\]
+At $n=2$, the minima are $\Qp(2)=3$ and $\Qm(2)=2$, giving primes 7
+and 2. For every even $n\ge4$, the offset 2 fails in both directions:
+$n^2\pm2$ is even and greater than 2.
+
+\begin{proposition}\label{prop:legendre}
+If both prime-offset conjectures hold, every interval
+$(m^2,(m+1)^2)$, $m\ge1$ an integer, contains a prime.
+\end{proposition}
+\begin{proof}
+For even $m$, use an upper witness at $n=m$. For odd $m$, use a lower
+witness at the even center $n=m+1$. The displayed strict inequalities
+place the prime in the required interval. The lower witness at $n=2$
+also handles $m=1$.
+\end{proof}
+This is a conditional implication for Legendre's conjecture. Prime existence
+in a square gap by itself imposes no primality condition on the displacement.
+
+\newpage
+\section{Elementary arithmetic restrictions}
+Recall why coprime integers $a,b$ have integers $x,y$ with $ax+by=1$.
+Take the least positive integer $d$ of the form $ax+by$. Division with
+remainder of $a$ or $b$ by $d$ shows that any nonzero remainder would
+be a smaller positive combination. Thus $d$ divides both $a$ and $b$,
+so $d=1$. This is B\'ezout's identity in the coprime case.
+
+We use the elementary fact that a prime $\ell$ dividing $n^2$ divides $n$.
+Indeed, if $\ell\nmid n$, B\'ezout's identity gives an inverse of $n$ modulo
+$\ell$; multiplying $n^2\equiv0$ by its square would give $1\equiv0$.
+
+\begin{proposition}\label{prop:divisor}
+If $n\ge4$ is even and a prime $q$ divides $n$, then both $n^2+q$ and
+$n^2-q$ are composite.
+\end{proposition}
+\begin{proof}
+Both values are multiples of $q$. Since $q\le n$,
+$n^2-q\ge n^2-n>n\ge q$. Thus each value has a proper prime divisor.
+\end{proof}
+
+\begin{corollary}\label{prop:finite}
+For every real $B\ge2$, infinitely many even $n$ have no successful prime
+offset $q\le B$ in either direction.
+\end{corollary}
+\begin{proof}
+Let $P$ be the product of all primes at most $B$. It includes 2, so all
+multiples $n=kP$ are even. For the infinitely many such $n\ge4$, every
+prime $q\le B$ divides $n$ and Proposition~\ref{prop:divisor} applies.
+\end{proof}
+The statement also rules out every fixed finite collection of prime offsets:
+choose $B$ at least as large as all its elements. It does not assert that a
+larger witness exists. If the two conjectures hold, both minima exceed $B$
+at these centers; without them, either minimum could be $\infty$.
+For example, $n=30$ eliminates 2, 3 and 5, but its actual minima are 7 and 13.
+
+\begin{proposition}\label{prop:three}
+Let $n\ge4$ be even with $3\nmid n$, and let $q>3$ be prime.
+Within the respective offset bounds, an upper witness requires
+$q\equiv1\pmod3$, and a lower witness requires $q\equiv2\pmod3$.
+\end{proposition}
+\begin{proof}
+Here $n^2\equiv1\pmod3$, while $q$ is congruent to 1 or 2.
+If $q\equiv2$, then $3\mid n^2+q$. If $q\equiv1$, then
+$3\mid n^2-q$. In the lower bounded interval
+$n^2-q>(n-1)^2\ge9$, and the upper value is larger still, so a value
+divisible by 3 is composite.
+\end{proof}
+If $3\mid n$, neither nonzero residue of $q$ is excluded by this modulus.
+The offset $q=3$ itself fails by Proposition~\ref{prop:divisor}.
+When $3\nmid n$, $q=3$ must instead be tested separately.
+
+More generally, a congruence filter may reject a positive integer $v$
+when $\ell\mid v$ and $v>\ell$. It must retain $v=\ell$:
+divisibility by a small prime is not sufficient to reject that prime itself.
+This equality exception is essential for the lower witness at $n=2$.
+
+\newpage
+\section{Counting local conditions at a fixed center}
+Fix an even $n$ and a finite set $S$ of distinct primes, with
+$M=\prod_{\ell\in S}\ell$. The empty product is 1. For $s\in\{1,-1\}$ set
+\[
+A_s(n;M)=\{a\bmod M:\gcd(a,M)=\gcd(n^2+sa,M)=1\}.
+\]
+The variable $a$ ranges over all residue classes, not just primes.
+This distinction makes the following count exact.
+
+\begin{proposition}\label{prop:local}
+For either sign,
+\[
+ |A_s(n;M)|=\prod_{\ell\in S}(\ell-\nu_\ell(n)),
+ \qquad
+ \nu_\ell(n)=
+ \begin{cases}1,&\ell\mid n,\\2,&\ell\nmid n.\end{cases}
+\]
+Moreover, $a\mapsto-a$ is a bijection from $A_+(n;M)$ to $A_-(n;M)$.
+\end{proposition}
+\begin{proof}
+At a single prime $\ell$, exclude $a\equiv0$ and $a\equiv-sn^2$.
+These residues coincide exactly when $\ell\mid n^2$, equivalently
+$\ell\mid n$. Thus there are $\ell-\nu_\ell(n)$ choices.
+
+For completeness, the Chinese remainder theorem gives a bijection between
+residues modulo $M$ and tuples of residues modulo the primes in $S$.
+Write $M_\ell=M/\ell$ and choose $u_\ell$ with
+$u_\ell M_\ell\equiv1\pmod\ell$, possible by B\'ezout's identity.
+The tuple $(a_\ell)$ is represented by
+$\sum_{\ell\in S}a_\ell u_\ell M_\ell\bmod M$.
+Two representatives of the same tuple differ by a multiple of every prime
+in $S$, hence of their product. This proves both existence and uniqueness,
+and the local choice counts therefore multiply.
+
+Finally, negation preserves coprimality of $a$ with $M$ and changes
+$n^2+a$ into $n^2-(-a)$. Negation is its own inverse.
+\end{proof}
+
+The exact fraction in a complete period is
+$|A_s|/M=\prod_{\ell\in S}(1-\nu_\ell(n)/\ell)$.
+Upper and lower counts agree over a complete residue period even though
+their allowed classes can differ. This does not imply equal counts of prime
+witnesses in the two bounded intervals.
+
+For an odd $\ell$, the ratio to two independent divisibility tests is
+\[
+c_\ell(n)=\frac{1-\nu_\ell(n)/\ell}{(1-1/\ell)^2}
+=
+\begin{cases}
+\ell/(\ell-1),&\ell\mid n,\\
+\ell(\ell-2)/(\ell-1)^2,&\ell\nmid n.
+\end{cases}
+\]
+At $\ell=2$ the ratio is 2 because $n$ is even. Thus
+$C_y(n)=2\prod_{3\le\ell\le y,\ \ell\ {\rm prime}}c_\ell(n)$ is a
+finite correction factor for $y\ge2$. Its algebra is exact; interpreting it
+as a correction to prime frequencies requires a heuristic model.
+The center is fixed throughout: we are counting offset residues, not
+solutions of quadratic congruences as $n$ varies.
+
+\newpage
+\section{Simultaneous local conditions}
+The same offset can be tested on both sides. Put
+\[
+B(n;M)=A_+(n;M)\cap A_-(n;M).
+\]
+
+\begin{proposition}\label{prop:joint}
+For even $n$,
+\[
+ |B(n;M)|=\prod_{\ell\in S}(\ell-\mu_\ell(n)),
+ \qquad
+ \mu_\ell(n)=
+ \begin{cases}
+ 1,&\ell\mid n,\\
+ 3,&\ell\nmid n.
+ \end{cases}
+\]
+If $3\in S$ and $3\nmid n$, then $B(n;M)$ is empty.
+\end{proposition}
+\begin{proof}
+The forbidden residues are $0,n^2,-n^2$. If $\ell\mid n$, all three
+coincide. Otherwise $\ell$ is odd, since $n$ is even. Then $n^2$ and
+$-n^2$ are distinct nonzero residues: equality would imply
+$2n^2\equiv0\pmod\ell$. There are consequently three exclusions.
+The CRT bijection proved above multiplies the local counts.
+For $\ell=3\nmid n$, the factor is $3-3=0$.
+\end{proof}
+
+\begin{corollary}\label{prop:common}
+For even $n\ge4$ with $3\nmid n$, a prime $q$ that is a bounded witness
+in both directions must be 3.
+\end{corollary}
+\begin{proof}
+The offset 2 fails by parity. Every prime $q>3$ has a nonzero residue
+modulo 3, and Proposition~\ref{prop:three} requires incompatible residues
+for the two directions. Only $q=3$ remains.
+\end{proof}
+The exception can occur: $4^2-3=13$ and $4^2+3=19$ are both prime.
+It is not counted by $B(n;M)$ when $3\mid M$, because the offset itself
+equals a sieving prime. At $n=6$, the common witness $q=5$ gives 31 and 41.
+There is no contradiction with the two offset conjectures, which allow
+different witnesses on the two sides.
+
+The following exact counts use $S=\{2,3,5,7\}$ and $M=210$.
+Each entry is checked by enumerating all 210 residues.
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$n$ & $|A_+|$ & $|A_-|$ & $|B|$\\
+\midrule
+% BEGIN LOCAL TABLE
+2 & 15 & 15 & 0\\
+4 & 15 & 15 & 0\\
+6 & 30 & 30 & 16\\
+10 & 20 & 20 & 0\\
+14 & 18 & 18 & 0\\
+30 & 40 & 40 & 32\\
+42 & 36 & 36 & 24\\
+210 & 48 & 48 & 48\\
+% END LOCAL TABLE
+\bottomrule
+\end{tabular}
+\end{center}
+These are counts of residue classes. Passing the local tests is not a
+certificate of primality. Genuine prime witnesses equal to a sieving prime,
+or having a shifted value equal to one, are separate exceptions.
+
+\newpage
+\section{Exact bounded computation}
+Let $N$ be the largest even integer at most the requested limit.
+The reference search marks primes by the Eratosthenes sieve through
+$T=(N+1)^2$. It lists prime offsets $2\le q\le2N$ in increasing order.
+For each even $2\le n\le N$ and each sign $s$, it tests only
+$q<2n+s$, recording the first witness or a failure.
+
+The sieve is exact: every composite $v\le T$ has a prime divisor
+$p\le\sqrt v$. Otherwise two nontrivial factors would both exceed
+$\sqrt v$. For the least prime divisor, $v\ge p^2$, so the sieve marks
+$v$ among the multiples starting at $p^2$. No prime is marked. The
+search is in range because the upper shifted value is below
+$(n+1)^2\le T$, and the lower one is positive.
+
+The optional filter uses only proper divisors from $\{2,3,5,7\}$; it
+retains equality with the divisor. A second calculation uses trial division,
+without that filter or the sieve, to check that the recorded offset is prime,
+that its shifted value is prime, and that every smaller prime offset fails.
+For a reported failure it checks every allowed prime offset.
+Trial division is exact for the same square-root divisor reason.
+
+All 5,000 even inputs through $10\,000$ have witnesses in both directions.
+The statistics below describe the minima, not all witnesses.
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Statistic & Upper & Lower\\
+\midrule
+% BEGIN RESULTS TABLE
+Even inputs & $5\,000$ & $5\,000$\\
+Failures & 0 & 0\\
+Largest minimum & 397 & 467\\
+Center of largest minimum & $6\,046$ & $8\,968$\\
+Mean & 27.8088 & 22.3494\\
+Median & 13 & 11\\
+95th percentile & 97 & 83\\
+% END RESULTS TABLE
+\bottomrule
+\end{tabular}
+\end{center}
+The percentile is the $\lceil0.95k\rceil$-th sorted successful minimum,
+where $k=5\,000$. If a search has failures, they are listed explicitly and
+descriptive statistics use successful inputs only.
+
+\texttt{results/offsets.csv} retains every input and both minima;
+an empty field denotes $\infty$. \texttt{records.csv} contains successive
+strict records, \texttt{summary.json} includes the data hash, and
+\texttt{local\_counts.csv} contains the residue table. The programs use
+only the Python standard library. Tests compare independent searches,
+exercise equality and boundary cases, and detect invalid or nonminimal
+reported witnesses. Tests supplement the proofs.
+
+The sieve's main array has $(N+1)^2+1$ bytes, about 100 MB at $N=10\,000$,
+with additional temporary allocations. The program caps the limit at
+20,000. This implementation and these results make no claim for a run to
+$10^8$; a different algorithm and retained outputs would be needed.
+
+\newpage
+\section{A larger lower-side range from published computation}
+Oliveira e Silva, Herzog and Pardi~\cite{goldbach} verified even Goldbach
+partitions through $4\cdot10^{18}$. Their $p(E)$ denotes the smallest prime
+summand in a partition of the even integer $E>4$.
+Section 2.1 and Table 4, printed page 2043, report the successive records of
+$p(E)$ over this range. The last and largest record is 9781.
+Thus their exhaustive computation supplies, for each such $E$ in range,
+primes $r,p$ with
+\[
+ E=r+p,\qquad r\le9781.
+\]
+This is an input from a published finite computation, not a theorem
+about all even integers and not a computation repeated in this repository.
+
+\begin{proposition}[Using published computational input]\label{prop:goldbach}
+Together with the small-case calculation above, that input verifies the
+lower prime-offset assertion for every even $2\le n\le2\cdot10^9$.
+\end{proposition}
+\begin{proof}
+If $4892\le n\le2\cdot10^9$ is even, then $n^2\le4\cdot10^{18}$.
+Apply the published input at $E=n^2$ and set $q=r$. Then $n^2-q=p$
+is prime and
+\[
+ q\le9781<9783\le2n-1.
+\]
+The remaining even centers $2\le n\le4890$ are included in the repository's
+independently checked search through $10\,000$.
+\end{proof}
+
+The threshold is strict: $2(4891)-1=9781$, so the published uniform
+bound alone would not suffice there. The first even center above this
+threshold is 4892. The even-square endpoint is exact:
+$(2\cdot10^9)^2=4\cdot10^{18}$.
+
+This deduction needs the bound on the \emph{minimal} smaller summand.
+A Goldbach representation with no bound on its summands would not imply
+$q<2n-1$. It also does not yield an upper witness: the upper question asks
+for the prime difference $p-q=n^2$, whereas the input gives the sum
+$p+q=n^2$. Nor does a prime in the upper square gap guarantee that its
+displacement from $n^2$ is prime.
+
+Only two summary facts from the external computation are used: its verified
+endpoint and its largest minimal summand. No third-party dataset is
+redistributed or silently loaded by the programs. The source links and
+page reference are recorded in \texttt{results/README.md}.
+
+The established ranges therefore have different provenance:
+\begin{itemize}
+\item Both sides through $n=10\,000$: this repository's exact search and
+independent verification.
+\item Lower side through $n=2\cdot10^9$: an elementary deduction using the
+published exhaustive computation and the repository's small cases.
+\end{itemize}
+No universal prime-existence statement follows from either finite range.
+
+\newpage
+\section{Heuristics, limitations and further questions}
+A rough model for prime offsets $q<H$ uses approximately $H/\log H$
+prime candidates and a prime frequency near $n^2$ of $1/(2\log n)$.
+If $H$ is small compared with $n^2$, an uncorrected expected count is
+\[
+ \lambda_0(n,H)\approx\frac{H}{2\log n\log H}.
+\]
+Parity doubles this baseline because odd $q$ gives an odd shifted value.
+The finite factor $C_y(n)$ describes additional congruence corrections,
+but the exact residue counts do not prove that prime candidates in a short
+interval follow this model.
+
+Solving the modeled count-of-order-one equation suggests a typical
+first-offset scale of order $\log n\log\log n$, up to local factors and
+constants. This is a heuristic interpretation, not a proved growth law.
+Records over many centers are a different statistic; the finite table gives
+no asymptotic bound for either minimum.
+
+For $H$ near $2n$, the model predicts a count of order $n/(\log n)^2$.
+A large expected count alone does not force existence. For example,
+a random variable equal to 0 or $2n$ with equal probabilities has
+expectation $n$ and a fixed probability of zero. A formula such as
+$\Pr(\text{no witness})\approx e^{-\lambda}$ requires an extra Poisson
+assumption. Even a decreasing modeled failure probability would not
+prove success for every even integer.
+
+The proved results concern obstructions, exact finite residue counts, and
+a conditional implication between conjectures. The existence and minimum
+tables are finite computations. The larger lower range relies on external
+computational evidence. The two universal offset assertions, the converse
+of Proposition~\ref{prop:legendre}, and asymptotic laws for the minima are
+not established here.
+
+Three further investigations follow naturally:
+\begin{enumerate}
+\item Group the finite minima by $n\bmod30$ or divisibility by small primes.
+Compare means and quantiles separately from records.
+\item Count common bounded witnesses, separating $3\mid n$ from
+$3\nmid n$ and retaining the exceptional offset 3.
+\item For a fixed center and cutoff, compare actual witness counts with
+locally admissible candidates. Quantify the information lost when a finite
+residue filter is used as a model for primality.
+\end{enumerate}
+None requires enlarging the project's prime-existence claims.
+
+\begin{thebibliography}{9}
+\bibitem{goldbach}
+T. Oliveira e Silva, S. Herzog and S. Pardi,
+\emph{Empirical verification of the even Goldbach conjecture and computation
+of prime gaps up to $4\cdot10^{18}$},
+Mathematics of Computation \textbf{83} (2014), no.~288, 2033--2060.
+\href{https://doi.org/10.1090/S0025-5718-2013-02787-1}{doi:10.1090/S0025-5718-2013-02787-1}.
+Section 2.1, Table 4, p.~2043.
+\end{thebibliography}
+
+\small
+Code and full finite outputs:
+\url{https://github.com/Mohammad-Aldebbeh/prime-offsets}.
+\end{document}
